@@ -1,0 +1,38 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Home Roof -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,26 L30,46 L35,46 L54,30.5 L73,46 L78,46 Z" />
+    <!-- Chimney / Sparkle accent -->
+    <path
+        android:fillColor="#FFD166"
+        android:pathData="M70,30 L74,30 L74,36 L70,33 Z" />
+    <path
+        android:fillColor="#FFD166"
+        android:pathData="M76,23 L77.5,25.5 L80,27 L77.5,28.5 L76,31 L74.5,28.5 L72,27 L74.5,25.5 Z" />
+    <!-- Outer Home Frame -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M34,48 L34,78 C34,80.2 35.8,82 38,82 L70,82 C72.2,82 74,80.2 74,78 L74,48 Z" />
+    <!-- Inner Organizer Shelves and Drawers (cutouts) -->
+    <!-- Top Shelf Left Box -->
+    <path
+        android:fillColor="#5B5BD6"
+        android:pathData="M38,52 L51,52 C52.1,52 53,52.9 53,54 L53,62 C53,63.1 52.1,64 51,64 L38,64 C36.9,64 36,63.1 36,62 L36,54 C36,52.9 36.9,52 38,52 Z" />
+    <!-- Top Shelf Right Box -->
+    <path
+        android:fillColor="#6C63FF"
+        android:pathData="M57,52 L70,52 C71.1,52 72,52.9 72,54 L72,62 C72,63.1 71.1,64 70,64 L57,64 C55.9,64 55,63.1 55,62 L55,54 C55,52.9 55.9,52 57,52 Z" />
+    <!-- Bottom Wide Organizer Drawer -->
+    <path
+        android:fillColor="#4A45B8"
+        android:pathData="M38,68 L70,68 C71.1,68 72,68.9 72,70 L72,76 C72,77.1 71.1,78 70,78 L38,78 C36.9,78 36,77.1 36,76 L36,70 C36,68.9 36.9,68 38,68 Z" />
+    <!-- Drawer Handle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,72 L58,72 C58.6,72 59,72.4 59,73 C59,73.6 58.6,74 58,74 L50,74 C49.4,74 49,73.6 49,73 C49,72.4 49.4,72 50,72 Z" />
+</vector>

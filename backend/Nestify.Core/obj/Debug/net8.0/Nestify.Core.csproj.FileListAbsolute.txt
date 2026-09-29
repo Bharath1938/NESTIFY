@@ -1,0 +1,11 @@
+C:\New folder\nestify\backend\Nestify.Core\bin\Debug\net8.0\Nestify.Core.deps.json
+C:\New folder\nestify\backend\Nestify.Core\bin\Debug\net8.0\Nestify.Core.dll
+C:\New folder\nestify\backend\Nestify.Core\bin\Debug\net8.0\Nestify.Core.pdb
+C:\New folder\nestify\backend\Nestify.Core\obj\Debug\net8.0\Nestify.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\New folder\nestify\backend\Nestify.Core\obj\Debug\net8.0\Nestify.Core.AssemblyInfoInputs.cache
+C:\New folder\nestify\backend\Nestify.Core\obj\Debug\net8.0\Nestify.Core.AssemblyInfo.cs
+C:\New folder\nestify\backend\Nestify.Core\obj\Debug\net8.0\Nestify.Core.csproj.CoreCompileInputs.cache
+C:\New folder\nestify\backend\Nestify.Core\obj\Debug\net8.0\Nestify.Core.dll
+C:\New folder\nestify\backend\Nestify.Core\obj\Debug\net8.0\refint\Nestify.Core.dll
+C:\New folder\nestify\backend\Nestify.Core\obj\Debug\net8.0\Nestify.Core.pdb
+C:\New folder\nestify\backend\Nestify.Core\obj\Debug\net8.0\ref\Nestify.Core.dll

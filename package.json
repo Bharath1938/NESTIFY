@@ -1,0 +1,24 @@
+{
+  "name": "nestify",
+  "version": "1.0.0",
+  "description": "Nestify Home Organization Marketplace - Full Stack Project",
+  "scripts": {
+    "start": "dotnet run --project backend/Nestify.Api --urls http://localhost:5000",
+    "dev": "dotnet run --project backend/Nestify.Api --urls http://localhost:5000",
+    "build": "dotnet build backend/Nestify.sln",
+    "db:deploy": "sqlcmd -S (localdb)\\mssqllocaldb -i database/00_master_deploy.sql",
+    "db:test": "sqlcmd -S (localdb)\\mssqllocaldb -i database/09_sample_queries.sql",
+    "db:rollback": "sqlcmd -S (localdb)\\mssqllocaldb -i database/rollback.sql",
+    "mobile:start": "npm --prefix mobile start",
+    "mobile:android": "npm --prefix mobile run android"
+  },
+  "keywords": [
+    "nestify",
+    "home-organization",
+    "marketplace",
+    "sql-server",
+    "dotnet"
+  ],
+  "author": "Nestify Engineering Team",
+  "license": "ISC"
+}

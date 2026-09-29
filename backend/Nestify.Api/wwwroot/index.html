@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nestify - Home Organization Marketplace Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(18, 24, 38, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(30, 41, 59, 0.85);
+      --primary: #6366f1;
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      --accent: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.2);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius: 16px;
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.12) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+      color: var(--text);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(9, 13, 22, 0.8);
+      backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--primary-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: #34d399;
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border: 1px solid var(--card-border);
+      padding: 0.5rem 1.1rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--primary-gradient);
+      border: none;
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 2rem;
+      width: 100%;
+    }
+
+    /* Tabs */
+    .tabs-nav {
+      display: flex;
+      gap: 0.5rem;
+      background: rgba(18, 24, 38, 0.5);
+      padding: 0.35rem;
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
+      margin-bottom: 2rem;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      color: #fff;
+      background: var(--primary);
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      backdrop-filter: blur(16px);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .kpi-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kpi-value {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+
+    .kpi-tag {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .tag-emerald { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .tag-indigo { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+    .tag-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+
+    /* Cards & Grids */
+    .grid-services {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+    }
+
+    .service-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+    }
+
+    .service-img-wrap {
+      height: 170px;
+      position: relative;
+      overflow: hidden;
+      background: #1e293b;
+    }
+
+    .service-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover .service-img {
+      transform: scale(1.05);
+    }
+
+    .service-category-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      color: #e2e8f0;
+      padding: 0.3rem 0.7rem;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .service-body {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #fff;
+    }
+
+    .service-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    .service-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--card-border);
+      padding-top: 0.85rem;
+    }
+
+    .service-price {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+
+    .service-duration {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    /* Table Styles */
+    .table-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+    }
+
+    .table-header-box {
+      padding: 1.25rem;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .table-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    th {
+      background: rgba(15, 23, 42, 0.6);
+      padding: 0.85rem 1.2rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      border-bottom: 1px solid var(--card-border);
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+    }
+
+    td {
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text);
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .badge-status {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .status-Paid { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .status-InProgress { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .status-Requested { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .status-Accepted { background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }
+
+    /* Auth Console */
+    .auth-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .auth-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .auth-sub {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .demo-buttons {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .terminal-output {
+      background: #06090e;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: #a7f3d0;
+      min-height: 120px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header>
+    <div class="brand-wrap">
+      <div class="brand-logo">N</div>
+      <div>
+        <div class="brand-title">Nestify Marketplace</div>
+        <div class="brand-sub">Home Organization Management Portal • SQL Server 2025</div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>NestifyDB Online</span>
+      </div>
+      <a href="/swagger" target="_blank" class="btn btn-primary">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        Swagger API
+      </a>
+      <button class="btn" onclick="fetchData()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        Refresh
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main>
+    <!-- Tab Controls -->
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('dashboard')">📊 Overview & KPIs</button>
+      <button class="tab-btn" onclick="switchTab('services')">🛋️ Service Catalog</button>
+      <button class="tab-btn" onclick="switchTab('bookings')">📋 Bookings Tracker</button>
+      <button class="tab-btn" onclick="switchTab('organizers')">⭐ Verified Organizers</button>
+      <button class="tab-btn" onclick="switchTab('auth')">🔐 Demo Auth Tester</button>
+    </div>
+
+    <!-- TAB 1: DASHBOARD & METRICS -->
+    <div id="tab-dashboard" class="tab-content active">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">
+            Active Customers
+            <span class="kpi-tag tag-indigo">Marketplace</span>
+          </div>
+          <div class="kpi-value" id="kpi-customers">1</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">
+            Approved Organizers
+            <span class="kpi-tag tag-emerald">Certified</span>
+          </div>
+          <div class="kpi-value" id="kpi-organizers">1</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">
+            Open Jobs Pool
+            <span class="kpi-tag tag-amber">Available</span>
+          </div>
+          <div class="kpi-value" id="kpi-open-jobs">1</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">
+            In-Progress Jobs
+            <span class="kpi-tag tag-indigo">Active</span>
+          </div>
+          <div class="kpi-value" id="kpi-inprogress">1</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">
+            Gross Volume (GMV)
+            <span class="kpi-tag tag-emerald">Completed</span>
+          </div>
+          <div class="kpi-value" id="kpi-gmv">$138.00</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">
+            Platform Fees (15%)
+            <span class="kpi-tag tag-emerald">Revenue</span>
+          </div>
+          <div class="kpi-value" id="kpi-fees">$18.00</div>
+        </div>
+      </div>
+
+      <!-- Recent Marketplace Activity Table -->
+      <div class="table-card">
+        <div class="table-header-box">
+          <div class="table-title">Recent Marketplace Bookings</div>
+          <button class="btn" onclick="switchTab('bookings')">View All</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Customer</th>
+              <th>Service</th>
+              <th>Organizer</th>
+              <th>Date / Time</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="dashboard-bookings-tbody">
+            <tr><td colspan="7" style="text-align: center; color: var(--text-dim);">Loading bookings from NestifyDB...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 2: SERVICE CATALOG -->
+    <div id="tab-services" class="tab-content">
+      <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h2 style="font-size: 1.4rem; font-weight: 800;">Services Catalog</h2>
+          <p style="color: var(--text-muted); font-size: 0.88rem;">Professional home organizing offerings configured in dbo.Services</p>
+        </div>
+      </div>
+      <div class="grid-services" id="services-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- TAB 3: BOOKINGS TRACKER -->
+    <div id="tab-bookings" class="tab-content">
+      <div class="table-card">
+        <div class="table-header-box">
+          <div>
+            <div class="table-title">Two-Sided Booking Transactions</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Real-time status tracking across customer bookings & organizer jobs</div>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Booking ID</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Service</th>
+              <th>Location</th>
+              <th>Organizer</th>
+              <th>Financials</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="all-bookings-tbody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 4: VERIFIED ORGANIZERS -->
+    <div id="tab-organizers" class="tab-content">
+      <div style="margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.4rem; font-weight: 800;">Certified Organizers</h2>
+        <p style="color: var(--text-muted); font-size: 0.88rem;">Approved professionals serving active service zones</p>
+      </div>
+      <div class="grid-services" id="organizers-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- TAB 5: DEMO AUTH TESTER -->
+    <div id="tab-auth" class="tab-content">
+      <div class="auth-box">
+        <div class="auth-title">Interactive Authentication Tester</div>
+        <div class="auth-sub">
+          Test real-time authentication against <code>dbo.sp_AuthenticateUser</code> with cryptographic SHA-512 salting. Click a demo account to authenticate:
+        </div>
+
+        <div class="demo-buttons">
+          <button class="btn btn-primary" onclick="testLogin('customer@nestify.demo', 'Nestify@123', 'Customer')">
+            👤 Test Customer (customer@nestify.demo)
+          </button>
+          <button class="btn btn-primary" onclick="testLogin('organizer@nestify.demo', 'Nestify@456', 'Organizer')">
+            🛠️ Test Organizer (organizer@nestify.demo)
+          </button>
+          <button class="btn btn-primary" onclick="testLogin('admin@nestify.demo', 'Nestify@Admin2026!', 'Admin')">
+            ⚡ Test Admin (admin@nestify.demo)
+          </button>
+        </div>
+
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600;">
+          API Response (SQL Server Procedure Result):
+        </div>
+        <div class="terminal-output" id="auth-terminal">// Click any demo account above to send an authentication request...</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Nestify Home Organization Marketplace • Powered by ASP.NET Core & Microsoft SQL Server 2025 (NestifyDB)
+  </footer>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.textContent.toLowerCase().includes(tabId));
+      if (targetBtn) targetBtn.classList.add('active');
+      
+      const content = document.getElementById('tab-' + tabId);
+      if (content) content.classList.add('active');
+    }
+
+    async function fetchData() {
+      try {
+        // 1. Fetch Stats
+        const statsRes = await fetch('/api/marketplace/stats');
+        if (statsRes.ok) {
+          const stats = await statsRes.json();
+          document.getElementById('kpi-customers').innerText = stats.totalActiveCustomers ?? '1';
+          document.getElementById('kpi-organizers').innerText = stats.totalApprovedOrganizers ?? '1';
+          document.getElementById('kpi-open-jobs').innerText = stats.openBookingsPool ?? '1';
+          document.getElementById('kpi-inprogress').innerText = stats.inProgressBookings ?? '1';
+          document.getElementById('kpi-gmv').innerText = '$' + Number(stats.grossMarketplaceVolume ?? 138).toFixed(2);
+          document.getElementById('kpi-fees').innerText = '$' + Number(stats.totalPlatformFeesEarned ?? 18).toFixed(2);
+        }
+
+        // 2. Fetch Services
+        const servicesRes = await fetch('/api/marketplace/services');
+        if (servicesRes.ok) {
+          const services = await servicesRes.json();
+          renderServices(services);
+        }
+
+        // 3. Fetch Bookings
+        const bookingsRes = await fetch('/api/marketplace/bookings');
+        if (bookingsRes.ok) {
+          const bookings = await bookingsRes.json();
+          renderBookings(bookings);
+        }
+
+        // 4. Fetch Organizers
+        const orgsRes = await fetch('/api/marketplace/organizers');
+        if (orgsRes.ok) {
+          const orgs = await orgsRes.json();
+          renderOrganizers(orgs);
+        }
+      } catch (err) {
+        console.error('Error loading data:', err);
+      }
+    }
+
+    function renderServices(services) {
+      const grid = document.getElementById('services-grid');
+      grid.innerHTML = services.map(s => `
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img src="${s.serviceImageURL || 'https://images.unsplash.com/photo-1540518614846-7ede433c4ef7'}" alt="${s.serviceName}" class="service-img" />
+            <div class="service-category-badge">${s.categoryName}</div>
+          </div>
+          <div class="service-body">
+            <div class="service-title">${s.serviceName}</div>
+            <div class="service-desc">${s.serviceDescription || ''}</div>
+            <div class="service-meta">
+              <div>
+                <span class="service-price">$${Number(s.startingPrice).toFixed(2)}</span>
+                <span style="font-size: 0.75rem; color: var(--text-dim);"> starting</span>
+              </div>
+              <div class="service-duration">⏱️ ~${s.estimatedDuration} hrs</div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderBookings(bookings) {
+      const dashTbody = document.getElementById('dashboard-bookings-tbody');
+      const allTbody = document.getElementById('all-bookings-tbody');
+
+      const rows = bookings.map(b => `
+        <tr>
+          <td><strong style="color: #818cf8;">#${b.bookingID}</strong></td>
+          <td>${b.bookingDate}<br><span style="font-size: 0.75rem; color: var(--text-dim);">${b.startTime}</span></td>
+          <td>${b.customerName}<br><span style="font-size: 0.75rem; color: var(--text-dim);">${b.customerPhone}</span></td>
+          <td><strong style="color: #fff;">${b.serviceName}</strong><br><span style="font-size: 0.75rem; color: var(--text-dim);">${b.categoryName}</span></td>
+          <td>${b.city || 'SF'}<br><span style="font-size: 0.75rem; color: var(--text-dim);">${b.addressLine || ''}</span></td>
+          <td>${b.organizerName}</td>
+          <td><strong style="color: #38bdf8;">$${Number(b.totalAmount).toFixed(2)}</strong></td>
+          <td><span class="badge-status status-${b.bookingStatus}">${b.bookingStatus}</span></td>
+        </tr>
+      `).join('');
+
+      dashTbody.innerHTML = rows;
+      allTbody.innerHTML = rows;
+    }
+
+    function renderOrganizers(orgs) {
+      const grid = document.getElementById('organizers-grid');
+      grid.innerHTML = orgs.map(o => `
+        <div class="service-card" style="padding: 1.5rem;">
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+            <img src="${o.profilePhotoURL || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2'}" 
+                 style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);" />
+            <div>
+              <div style="font-size: 1.1rem; font-weight: 700; color: #fff;">${o.fullName}</div>
+              <div style="font-size: 0.8rem; color: #34d399; font-weight: 600;">✓ Certified & Verified</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+            <span class="kpi-tag tag-amber">⭐ ${Number(o.rating).toFixed(2)} Rating</span>
+            <span class="kpi-tag tag-emerald">💼 ${o.completedJobs} Jobs</span>
+            <span class="kpi-tag tag-indigo">⏳ ${o.experienceYears}y Exp</span>
+          </div>
+          <div style="font-size: 0.82rem; color: var(--text-muted); border-top: 1px solid var(--card-border); padding-top: 0.75rem;">
+            <div>📧 ${o.email}</div>
+            <div>📱 ${o.phone}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function testLogin(loginId, password, role) {
+      const terminal = document.getElementById('auth-terminal');
+      terminal.innerText = `Connecting to Nestify API...\nCalling sp_AuthenticateUser with LoginID="${loginId}"...`;
+      
+      try {
+        const res = await fetch('/api/marketplace/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ loginId, password, expectedRole: role })
+        });
+        const data = await res.json();
+        terminal.innerText = JSON.stringify(data, null, 2);
+      } catch (err) {
+        terminal.innerText = 'Error calling authentication endpoint: ' + err;
+      }
+    }
+
+    // Initial load
+    fetchData();
+  </script>
+</body>
+</html>

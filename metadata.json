@@ -1,0 +1,6 @@
+{
+  "name": "Nestify",
+  "description": "Discover, book, and transform your home spaces with professional organizers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

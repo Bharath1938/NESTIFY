@@ -1,0 +1,15 @@
+C:\New folder\nestify\backend\Nestify.Infrastructure\bin\Debug\net8.0\Nestify.Infrastructure.deps.json
+C:\New folder\nestify\backend\Nestify.Infrastructure\bin\Debug\net8.0\Nestify.Infrastructure.dll
+C:\New folder\nestify\backend\Nestify.Infrastructure\bin\Debug\net8.0\Nestify.Infrastructure.pdb
+C:\New folder\nestify\backend\Nestify.Infrastructure\bin\Debug\net8.0\Nestify.Core.dll
+C:\New folder\nestify\backend\Nestify.Infrastructure\bin\Debug\net8.0\Nestify.Core.pdb
+C:\New folder\nestify\backend\Nestify.Infrastructure\obj\Debug\net8.0\Nestify.Infrastructure.csproj.AssemblyReference.cache
+C:\New folder\nestify\backend\Nestify.Infrastructure\obj\Debug\net8.0\Nestify.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\New folder\nestify\backend\Nestify.Infrastructure\obj\Debug\net8.0\Nestify.Infrastructure.AssemblyInfoInputs.cache
+C:\New folder\nestify\backend\Nestify.Infrastructure\obj\Debug\net8.0\Nestify.Infrastructure.AssemblyInfo.cs
+C:\New folder\nestify\backend\Nestify.Infrastructure\obj\Debug\net8.0\Nestify.Infrastructure.csproj.CoreCompileInputs.cache
+C:\New folder\nestify\backend\Nestify.Infrastructure\obj\Debug\net8.0\Nestify..20CB4E12.Up2Date
+C:\New folder\nestify\backend\Nestify.Infrastructure\obj\Debug\net8.0\Nestify.Infrastructure.dll
+C:\New folder\nestify\backend\Nestify.Infrastructure\obj\Debug\net8.0\refint\Nestify.Infrastructure.dll
+C:\New folder\nestify\backend\Nestify.Infrastructure\obj\Debug\net8.0\Nestify.Infrastructure.pdb
+C:\New folder\nestify\backend\Nestify.Infrastructure\obj\Debug\net8.0\ref\Nestify.Infrastructure.dll
