@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div align="center">
   <img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
 </div>
@@ -20,3 +21,7 @@ View your app in [AI Studio](https://ai.studio/apps/4fa75601-859c-4865-af1d-18b9
 6. Run the app on an emulator or physical device
 7. If you have already published your app in AI Studio, please [request upload key reset](https://support.google.com/googleplay/android-developer/answer/9842756#zippy=%2Crequest-an-upload-key-reset) in Google Play Console.
 
+=======
+# NESTIFY
+Home Organization Marketplace
+>>>>>>> 9bf7804a3113ecd85235a9ed09b0030b7592a8e4
